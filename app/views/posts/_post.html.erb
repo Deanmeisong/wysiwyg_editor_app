@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>">
+<div id="<%= dom_id(post) %>">
   <p>
     <strong>Title:</strong>
     <%= post.title %>
@@ -9,4 +9,9 @@
     <%= post.content %>
   </p>
 
+  <% post.content.embeds.each do |embed| %>
+    <% if embed.blob.image? %>
+      <%= image_tag rails_blob_url(embed.blob) %>
+    <% end %>
+  <% end %>
 </div>
